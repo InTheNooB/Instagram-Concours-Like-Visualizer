@@ -1,5 +1,7 @@
 # Instagram-Concours-Like-Visualizer
 Permet de visualiser les données récupérées par le projet "Instagram-Concours-Like-Scrapper"
+### Rendu
+![image][image]
 
 ### Données importées
 Les données importées sont générées par le projet ``Instagram-Concours-Like-Scrapper`` sous la forme suivante :
@@ -24,3 +26,6 @@ Les données importées sont générées par le projet ``Instagram-Concours-Like
 ``URL`` : L'identifier de la photo Instagram (exemple en gras : instagram[.]com/p/**CXa-EBxqqJo**/) 
 Le fichier doit se trouver un niveau plus haut sous ``../data.json``
 
+
+
+[image]: https://i.ibb.co/cJsQTvc/Capture-d-cran-2021-12-22-151532.png
