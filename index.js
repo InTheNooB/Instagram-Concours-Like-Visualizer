@@ -5,8 +5,8 @@ const port = 12345
 const index_file_path = './public/index.html';
 const data_file_path = '../data.json';
 
-app.get('/', function (req, res) {
-    fs.readFile(index_file_path, 'utf-8', function (err, indexHtml) {
+app.get('/', function(req, res) {
+    fs.readFile(index_file_path, 'utf-8', function(err, indexHtml) {
         if (err) {
             res.send(404);
         } else {
@@ -15,6 +15,7 @@ app.get('/', function (req, res) {
             let parsedData = JSON.parse(rawData);
             let chartLabels = [];
             let chartDatasets = [];
+            let classementJeunesse = [];
 
             // Parse the list of jeunesse
             for (const jeunesse of Object.keys(parsedData)) {
@@ -30,6 +31,11 @@ app.get('/', function (req, res) {
                     borderColor: rgb,
                     tension: 0.1
                 };
+
+                classementJeunesse.push({
+                    url : dataset.label,
+                    value : parseInt(parsedData[jeunesse].checks.at(-1)['likes'].replace(' ', ''))
+                });
 
                 // for each jeunesse, parse their checks
                 parsedData[jeunesse].checks.forEach(check => {
@@ -67,7 +73,6 @@ app.get('/', function (req, res) {
                                 data.push(data[data.length - 1]);
                             } else {
                                 data.push(null);
-
                             }
                         }
                     }
@@ -75,9 +80,23 @@ app.get('/', function (req, res) {
                 });
                 chartDatasets.push(dataset);
             };
+
+            // Classement
+            classementJeunesse.sort(function (a, b) {
+                return b.value - a.value;
+            });
+
+            let classement = "";
+            classementJeunesse.forEach(jeunesse => {
+                classement += `<li>${jeunesse.url} : ${jeunesse.value}`;
+            });
+
             chartLabels.sort();
+
+
             indexHtml = indexHtml.replace('{{chart_labels}}', JSON.stringify(chartLabels))
-                .replace('{{chart_datasets}}', JSON.stringify(chartDatasets));
+                .replace('{{chart_datasets}}', JSON.stringify(chartDatasets))
+                .replace('{{classement}}', classement);
             res.send(indexHtml);
         }
     });
