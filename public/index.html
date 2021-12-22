@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.2/chart.min.js" integrity="sha512-tMabqarPtykgDtdtSqCL3uLVM0gS1ZkUAVhRFu1vSEFgvB73niFQWJuvviDyBGBH22Lcau4rHB5p2K2T0Xvr6Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Data Visualizer</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <canvas id="chart_likes_jeunesses" width="1000" height="600"></canvas>
+    </div>
+    <script>
+        const ctx = document.getElementById('chart_likes_jeunesses');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {{chart_labels}},
+                datasets: {{chart_datasets}}
+            },
+            options : {
+                responsive: false,
+                maintainAspectRatio: false
+            }
+        });
+    </script>
+    <style>
+        .wrapper {
+        }
+    </style>
+
+</body>
+
+</html>
