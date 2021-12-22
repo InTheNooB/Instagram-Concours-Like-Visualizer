@@ -13,6 +13,11 @@
     <div class="wrapper">
         <canvas id="chart_likes_jeunesses" width="1000" height="600"></canvas>
     </div>
+    <div class="classement">
+        <ol id="classement">
+            {{classement}}
+        </ol>
+    </div>
     <script>
         const ctx = document.getElementById('chart_likes_jeunesses');
         const myChart = new Chart(ctx, {
