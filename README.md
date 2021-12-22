@@ -21,6 +21,6 @@ Les données importées sont générées par le projet ``Instagram-Concours-Like
     }
 }
 ```
-
+``URL`` : L'identifier de la photo Instagram (exemple en gras : instagram[.]com/p/**CXa-EBxqqJo**/) 
 Le fichier doit se trouver un niveau plus haut sous ``../data.json``
 
