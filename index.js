@@ -169,14 +169,15 @@ app.get('/', function(req, res) {
             let classement = "";
             classementJeunesse.forEach(jeunesse => {
                 let diff = "";
+                let diff_int = 0;
                 
                 // If there is a last check, calculate the difference 
                 if (parsedData[jeunesse.name].checks[parsedData[jeunesse.name].checks.length - 2]) {
-                    let diff = parseInt(jeunesse.value) - parseInt(parsedData[jeunesse.name].checks[parsedData[jeunesse.name].checks.length - 2]['likes'].replace(' ', ''));
-                    if (diff > 0) {
-                        diff = "(+" + diff + ")";
-                    } else if (diff < 0) {
-                        diff = "(" + diff + ")";
+                    diff_int = parseInt(jeunesse.value) - parseInt(parsedData[jeunesse.name].checks[parsedData[jeunesse.name].checks.length - 2]['likes'].replace(' ', ''));
+                    if (diff_int > 0) {
+                        diff = "(+" + diff_int + ")";
+                    } else if (diff_int < 0) {
+                        diff = "(" + diff_int + ")";
                     }
                 }
                 classement += `<li>${jeunesse.url} : ${jeunesse.value} ${diff}</li>`;
